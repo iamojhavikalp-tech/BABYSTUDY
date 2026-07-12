@@ -212,10 +212,6 @@ focus and growth.
 
 </body>
 </html>
-/* ===========================
-   BABY STUDY PROJECT v1.0
-   style.css (Part 1B-1)
-=========================== */
 
 *{
     margin:0;
@@ -541,9 +537,7 @@ rgba(255,255,255,.08) 0
 margin-bottom:20px;
 
 }
-/* ===========================
-   Features Section
-=========================== */
+
 
 .features{
     padding:100px 8%;
