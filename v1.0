@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BabyStudy - Study Together</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        📚 <span>BabyStudy</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <button id="loginBtn">Login</button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+
+    <div class="hero-left">
+
+        <h1>
+            Study Smarter.<br>
+            Compete Better.<br>
+            Grow Together.
+        </h1>
+
+        <p>
+            BabyStudy helps students stay focused with study timers,
+            leaderboards, groups, analytics, and daily goals.
+        </p>
+
+        <button id="startBtn">
+            Get Started
+        </button>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="hero-card">
+
+            <h2>Today's Progress</h2>
+
+            <div class="progress-circle">
+                65%
+            </div>
+
+            <p>Goal: 15 Hours</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Features -->
+
+<section id="features" class="features">
+
+<h2>Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+⏱️
+<h3>Study Timer</h3>
+<p>Stopwatch & Pomodoro</p>
+</div>
+
+<div class="feature-card">
+🏆
+<h3>Leaderboards</h3>
+<p>Daily, Weekly & Monthly</p>
+</div>
+
+<div class="feature-card">
+👥
+<h3>Groups</h3>
+<p>Create private study groups</p>
+</div>
+
+<div class="feature-card">
+📈
+<h3>Analytics</h3>
+<p>Charts & Heatmaps</p>
+</div>
+
+<div class="feature-card">
+🎯
+<h3>Daily Goals</h3>
+<p>Track your progress</p>
+</div>
+
+<div class="feature-card">
+🔥
+<h3>Study Streak</h3>
+<p>Stay consistent every day</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- Login Modal -->
+
+<div class="modal" id="loginModal">
+
+<div class="login-box">
+
+<h2>Welcome Back 👋</h2>
+
+<input
+type="email"
+id="email"
+placeholder="Email">
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+<button id="emailLogin">
+Login
+</button>
+
+<button id="googleLogin">
+Continue with Google
+</button>
+
+<p>
+Don't have an account?
+<a href="#" id="signupLink">Create Account</a>
+</p>
+
+</div>
+
+</div>
+
+<!-- Signup Modal -->
+
+<div class="modal" id="signupModal">
+
+<div class="login-box">
+
+<h2>Create Account</h2>
+
+<input
+type="text"
+id="name"
+placeholder="Full Name">
+
+<input
+type="email"
+id="signupEmail"
+placeholder="Email">
+
+<input
+type="password"
+id="signupPassword"
+placeholder="Password">
+
+<button id="signupBtn">
+Create Account
+</button>
+
+<p>
+Already have an account?
+<a href="#" id="loginLink">
+Login
+</a>
+</p>
+
+</div>
+
+</div>
+
+<!-- Footer -->
+
+<footer>
+
+<h3>BabyStudy</h3>
+
+<p>
+Built for students who want consistency,
+focus and growth.
+</p>
+
+<p>
+
+© 2026 BabyStudy Project
+
+</p>
+
+</footer>
+
+</body>
+</html>
+/* ===========================
+   BABY STUDY PROJECT v1.0
+   style.css (Part 1B-1)
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#38BDF8;
+    --secondary:#8B5CF6;
+    --dark:#020617;
+    --card:rgba(15,23,42,.75);
+    --text:#ffffff;
+    --gray:#94A3B8;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--dark);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* Animated Background */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at top left,#2563eb 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#8b5cf6 0%,transparent 35%),
+    radial-gradient(circle at center,#0ea5e9 0%,transparent 45%),
+    #020617;
+}
+
+.background::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        rgba(255,255,255,.04),
+        transparent,
+        rgba(255,255,255,.04)
+    );
+    animation:bgMove 12s linear infinite;
+}
+
+@keyframes bgMove{
+
+0%{
+transform:translateX(-100%);
+}
+
+100%{
+transform:translateX(100%);
+}
+
+}
+
+/* Navbar */
+
+.navbar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 8%;
+
+background:rgba(2,6,23,.65);
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+z-index:999;
+
+}
+
+.logo{
+
+font-size:28px;
+
+font-weight:700;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+}
+
+.logo span{
+
+color:var(--primary);
+
+}
+
+.nav-links{
+
+display:flex;
+
+align-items:center;
+
+gap:25px;
+
+}
+
+.nav-links a{
+
+text-decoration:none;
+
+color:white;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+color:var(--primary);
+
+}
+
+.nav-links button{
+
+background:var(--primary);
+
+color:white;
+
+border:none;
+
+padding:12px 24px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.nav-links button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 0 20px rgba(56,189,248,.4);
+
+}
+
+/* Hero */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:120px 8%;
+
+gap:70px;
+
+flex-wrap:wrap;
+
+}
+
+.hero-left{
+
+flex:1;
+
+min-width:320px;
+
+}
+
+.hero-left h1{
+
+font-size:64px;
+
+line-height:1.15;
+
+margin-bottom:25px;
+
+}
+
+.hero-left p{
+
+font-size:19px;
+
+color:var(--gray);
+
+line-height:1.8;
+
+max-width:650px;
+
+margin-bottom:35px;
+
+}
+
+.hero-left button{
+
+padding:18px 38px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:16px;
+
+background:linear-gradient(
+135deg,
+var(--primary),
+var(--secondary)
+);
+
+color:white;
+
+cursor:pointer;
+
+font-weight:700;
+
+transition:.35s;
+
+}
+
+.hero-left button:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 20px 40px rgba(56,189,248,.3);
+
+}
+
+/* Hero Card */
+
+.hero-right{
+
+flex:1;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.hero-card{
+
+width:360px;
+
+padding:35px;
+
+background:var(--card);
+
+border-radius:28px;
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+text-align:center;
+
+box-shadow:0 25px 45px rgba(0,0,0,.35);
+
+}
+
+.hero-card h2{
+
+margin-bottom:25px;
+
+}
+
+.progress-circle{
+
+width:180px;
+
+height:180px;
+
+margin:auto;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:38px;
+
+font-weight:700;
+
+background:conic-gradient(
+var(--primary) 65%,
+rgba(255,255,255,.08) 0
+);
+
+margin-bottom:20px;
+
+}
+/* ===========================
+   Features Section
+=========================== */
+
+.features{
+    padding:100px 8%;
+}
+
+.features h2{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.feature-card{
+    background:var(--card);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+    padding:35px;
+    text-align:center;
+    transition:.35s;
+    cursor:pointer;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+    border-color:var(--primary);
+    box-shadow:0 20px 40px rgba(56,189,248,.25);
+}
+
+.feature-card h3{
+    margin:18px 0 12px;
+    font-size:24px;
+}
+
+.feature-card p{
+    color:var(--gray);
+    line-height:1.7;
+}
+
+/* ===========================
+   Login & Signup Modal
+=========================== */
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+.login-box{
+    width:95%;
+    max-width:430px;
+    background:var(--card);
+    backdrop-filter:blur(20px);
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.08);
+    padding:35px;
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.login-box input{
+    width:100%;
+    margin:12px 0;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:#0f172a;
+    color:white;
+    font-size:16px;
+}
+
+.login-box input:focus{
+    outline:2px solid var(--primary);
+}
+
+.login-box button{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-box button:hover{
+    transform:translateY(-3px);
+}
+
+.login-box p{
+    text-align:center;
+    margin-top:18px;
+}
+
+.login-box a{
+    color:var(--primary);
+    text-decoration:none;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+footer{
+    padding:50px 8%;
+    text-align:center;
+    color:var(--gray);
+}
+
+footer h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+footer p{
+    margin:8px 0;
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#020617;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--primary);
+    border-radius:20px;
+}
+
+/* ===========================
+   Animations
+=========================== */
+
+.hero,
+.features,
+footer{
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+
+from{
+    opacity:0;
+    transform:translateY(40px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:900px){
+
+.hero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-left h1{
+    font-size:42px;
+}
+
+.hero-card{
+    width:100%;
+    max-width:360px;
+}
+
+.navbar{
+    padding:16px 5%;
+}
+
+.nav-links{
+    gap:15px;
+}
+
+}
+
+@media(max-width:600px){
+
+.logo{
+    font-size:22px;
+}
+
+.nav-links a{
+    display:none;
+}
+
+.hero{
+    padding:100px 6%;
+}
+
+.hero-left h1{
+    font-size:34px;
+}
+
+.hero-left p{
+    font-size:16px;
+}
+
+.features{
+    padding:70px 6%;
+}
+
+.features h2{
+    font-size:32px;
+}
+
+.login-box{
+    padding:25px;
+}
+
+}
+/* =====================================
+   BABY STUDY PROJECT
+   app.js (Part 1C-1)
+===================================== */
+
+// --------------------------
+// Elements
+// --------------------------
+
+const loginModal = document.getElementById("loginModal");
+const signupModal = document.getElementById("signupModal");
+
+const loginBtn = document.getElementById("loginBtn");
+const startBtn = document.getElementById("startBtn");
+
+const signupLink = document.getElementById("signupLink");
+const loginLink = document.getElementById("loginLink");
+
+// Login Form
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+
+// Signup Form
+const nameInput = document.getElementById("name");
+const signupEmail = document.getElementById("signupEmail");
+const signupPassword = document.getElementById("signupPassword");
+
+// Buttons
+const emailLogin = document.getElementById("emailLogin");
+const googleLogin = document.getElementById("googleLogin");
+const signupBtn = document.getElementById("signupBtn");
+
+// --------------------------
+// Modal Controls
+// --------------------------
+
+function openLogin() {
+    loginModal.style.display = "flex";
+    signupModal.style.display = "none";
+}
+
+function openSignup() {
+    signupModal.style.display = "flex";
+    loginModal.style.display = "none";
+}
+
+function closeModals() {
+    loginModal.style.display = "none";
+    signupModal.style.display = "none";
+}
+
+// --------------------------
+// Event Listeners
+// --------------------------
+
+loginBtn.addEventListener("click", openLogin);
+
+startBtn.addEventListener("click", openLogin);
+
+signupLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    openSignup();
+});
+
+loginLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    openLogin();
+});
+
+// Close modal when clicking outside
+
+window.addEventListener("click", (event) => {
+
+    if (event.target === loginModal) {
+        closeModals();
+    }
+
+    if (event.target === signupModal) {
+        closeModals();
+    }
+
+});
+
+// ESC Key
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+        closeModals();
+    }
+
+});
+
+// --------------------------
+// Validation
+// --------------------------
+
+function validateEmail(emailValue) {
+
+    const pattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return pattern.test(emailValue);
+
+}
+
+function validatePassword(passwordValue) {
+
+    return passwordValue.length >= 6;
+
+}
+
+function showError(message) {
+
+    alert(message);
+
+}
+
+function showSuccess(message) {
+
+    alert(message);
+
+}
+
+// --------------------------
+// Login Validation
+// --------------------------
+
+emailLogin.addEventListener("click", () => {
+
+    const userEmail = email.value.trim();
+    const userPassword = password.value;
+
+    if (!validateEmail(userEmail)) {
+
+        return showError("Please enter a valid email.");
+
+    }
+
+    if (!validatePassword(userPassword)) {
+
+        return showError(
+            "Password must be at least 6 characters."
+        );
+
+    }
+
+    console.log("Login validation successful.");
+
+    // Firebase login comes in Part 1C-2
+
+});
+
+// --------------------------
+// Signup Validation
+// --------------------------
+
+signupBtn.addEventListener("click", () => {
+
+    const fullName = nameInput.value.trim();
+
+    const userEmail = signupEmail.value.trim();
+
+    const userPassword = signupPassword.value;
+
+    if (fullName.length < 3) {
+
+        return showError(
+            "Name must contain at least 3 characters."
+        );
+
+    }
+
+    if (!validateEmail(userEmail)) {
+
+        return showError("Invalid email.");
+
+    }
+
+    if (!validatePassword(userPassword)) {
+
+        return showError(
+            "Password must contain at least 6 characters."
+        );
+
+    }
+
+    console.log("Signup validation successful.");
+
+    // Firebase signup comes in Part 1C-2
+
+});
+
+// --------------------------
+// Google Login
+// --------------------------
+
+googleLogin.addEventListener("click", () => {
+
+    console.log("Google Login Clicked");
+
+    // Firebase Google Login
+    // Added in Part 1C-2
+
+});
+/* ======================================
+   BABY STUDY PROJECT
+   Privacy First Google Login
+====================================== */
+
+googleLogin.addEventListener("click", async () => {
+
+    try {
+
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        const result = await firebase.auth().signInWithPopup(provider);
+
+        const user = result.user;
+
+        // Ask for BabyStudy username
+        let username = prompt("Choose your BabyStudy username:");
+
+        if (!username || username.trim().length < 3) {
+            alert("Username must be at least 3 characters.");
+            return;
+        }
+
+        username = username.trim();
+
+        // Generate BabyStudy ID
+        const babyStudyID =
+            "BSP-" +
+            Math.random().toString(36).substring(2,8).toUpperCase();
+
+        // Only save safe information
+        const profile = {
+            uid: user.uid,
+            username: username,
+            babyStudyID: babyStudyID,
+            level: 1,
+            xp: 0,
+            streak: 0,
+            studyHours: 0,
+            dailyGoal: 10,
+            role: "member",
+            createdAt: new Date().toISOString()
+        };
+
+        localStorage.setItem(
+            "babyStudyUser",
+            JSON.stringify(profile)
+        );
+
+        window.location.href = "dashboard.html";
+
+    } catch (error) {
+
+        alert(error.message);
+
+    }
+
+});
+function createMemberCard(member){
+
+    return `
+        <div class="member-card">
+
+            <div class="avatar">
+                ${member.username.charAt(0).toUpperCase()}
+            </div>
+
+            <div class="member-info">
+
+                <h3>${member.username}</h3>
+
+                <p>ID : ${member.babyStudyID}</p>
+
+                <p>🔥 ${member.streak} Day Streak</p>
+
+                <p>⏱ ${member.studyHours.toFixed(1)} Hours</p>
+
+                <p>⭐ Level ${member.level}</p>
+
+            </div>
+
+        </div>
+    `;
+
+}
+/* =====================================
+   BABY STUDY PROJECT
+   app.js (Part 1C-2)
+   Firebase Authentication
+===================================== */
+
+// Firebase Services
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Google Provider
+const provider = new firebase.auth.GoogleAuthProvider();
+
+// -------------------------
+// Google Login
+// -------------------------
+
+googleLogin.addEventListener("click", async () => {
+
+    try {
+
+        const result = await auth.signInWithPopup(provider);
+
+        const user = result.user;
+
+        // Check if profile already exists
+        const doc = await db.collection("users")
+            .doc(user.uid)
+            .get();
+
+        if (!doc.exists) {
+
+            let username = "";
+
+            while (true) {
+
+                username = prompt(
+                    "Choose a unique BabyStudy username:"
+                );
+
+                if (!username) continue;
+
+                username = username.trim();
+
+                if (username.length >= 3) break;
+
+                alert("Username must be at least 3 characters.");
+
+            }
+
+            const babyID =
+                "BSP-" +
+                Math.random()
+                .toString(36)
+                .substring(2,8)
+                .toUpperCase();
+
+            await db.collection("users")
+                .doc(user.uid)
+                .set({
+
+                    username: username,
+
+                    babyID: babyID,
+
+                    role: "member",
+
+                    level: 1,
+
+                    xp: 0,
+
+                    streak: 0,
+
+                    totalHours: 0,
+
+                    todayHours: 0,
+
+                    weeklyHours: 0,
+
+                    monthlyHours: 0,
+
+                    dailyGoal: 10,
+
+                    groups: [],
+
+                    achievements: [],
+
+                    createdAt:
+                        firebase.firestore.FieldValue.serverTimestamp()
+
+                });
+
+        }
+
+        window.location.href = "dashboard.html";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+});
+
+// -------------------------
+// Auto Login
+// -------------------------
+
+auth.onAuthStateChanged((user)=>{
+
+    if(user){
+
+        console.log("Signed In");
+
+    }
+
+});
+/* =====================================
+   BABY STUDY PROJECT
+   app.js (Part 1C-3)
+   Session & Dashboard Protection
+===================================== */
+
+// Keep user logged in
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+.then(() => {
+    console.log("Session persistence enabled.");
+})
+.catch(console.error);
+
+// Check authentication state
+auth.onAuthStateChanged(async (user) => {
+
+    // User not logged in
+    if (!user) {
+
+        // Protect dashboard pages
+        if (
+            window.location.pathname.includes("dashboard.html")
+        ) {
+            window.location.href = "index.html";
+        }
+
+        return;
+    }
+
+    // Load profile
+    try {
+
+        const doc = await db.collection("users")
+            .doc(user.uid)
+            .get();
+
+        if (!doc.exists) return;
+
+        const profile = doc.data();
+
+        // Update dashboard UI if elements exist
+        const usernameEl = document.getElementById("username");
+        const babyIdEl = document.getElementById("babyID");
+        const levelEl = document.getElementById("level");
+
+        if (usernameEl)
+            usernameEl.textContent = profile.username;
+
+        if (babyIdEl)
+            babyIdEl.textContent = profile.babyID;
+
+        if (levelEl)
+            levelEl.textContent = "Level " + profile.level;
+
+    } catch (err) {
+        console.error(err);
+    }
+
+});
+
+// Logout
+function logout() {
+
+    auth.signOut()
+        .then(() => {
+
+            window.location.href = "index.html";
+
+        })
+        .catch(console.error);
+
+}
+
+// Logout Button
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener("click", logout);
+
+}
+
+// Loading Screen
+window.addEventListener("load", () => {
+
+    const loader = document.getElementById("loader");
+
+    if (loader) {
+
+        loader.style.opacity = "0";
+
+        setTimeout(() => {
+
+            loader.style.display = "none";
+
+        }, 400);
+
+    }
+
+});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BabyStudy Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script defer src="firebase.js"></script>
+<script defer src="dashboard.js"></script>
+<script defer src="timer.js"></script>
+<script defer src="subjects.js"></script>
+<script defer src="goals.js"></script>
+
+</head>
+
+<body>
+
+<div id="loader">
+    <h2>Loading BabyStudy...</h2>
+</div>
+
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        📚 BabyStudy
+    </div>
+
+    <ul>
+
+        <li class="active">🏠 Dashboard</li>
+
+        <li>⏱ Timer</li>
+
+        <li>📚 Subjects</li>
+
+        <li>👥 Groups</li>
+
+        <li>🏆 Leaderboard</li>
+
+        <li>📈 Analytics</li>
+
+        <li>⚙ Settings</li>
+
+    </ul>
+
+</aside>
+
+<!-- Main -->
+
+<main class="main">
+
+<header class="topbar">
+
+<div>
+
+<h2 id="username">
+Loading...
+</h2>
+
+<p id="babyID">
+BSP-XXXXXX
+</p>
+
+</div>
+
+<div class="profile">
+
+<span id="level">
+Level 1
+</span>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+<!-- Stats -->
+
+<section class="stats-grid">
+
+<div class="card">
+
+<h3>Today's Study</h3>
+
+<h1 id="todayHours">
+
+0.0h
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Daily Goal</h3>
+
+<h1 id="goalHours">
+
+10h
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Current Streak</h3>
+
+<h1 id="streak">
+
+0 🔥
+
+</h1>
+
+</div>
+
+<div class="card">
+
+<h3>XP</h3>
+
+<h1 id="xp">
+
+0
+
+</h1>
+
+</div>
+
+</section>
+
+<!-- Timer -->
+
+<section class="timer-card">
+
+<h2>Study Timer</h2>
+
+<select id="subjectSelect">
+
+<option>Physics ⚛️</option>
+
+<option>Chemistry 🧪</option>
+
+<option>Mathematics 📐</option>
+
+<option>Revision 📖</option>
+
+</select>
+
+<div id="timer">
+
+00:00:00
+
+</div>
+
+<div class="buttons">
+
+<button id="startTimer">
+
+▶ Start
+
+</button>
+
+<button id="pauseTimer">
+
+⏸ Pause
+
+</button>
+
+<button id="resetTimer">
+
+🔄 Reset
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Daily Goal -->
+
+<section class="goal-card">
+
+<h2>
+
+Daily Goal
+
+</h2>
+
+<input
+type="number"
+id="dailyGoalInput"
+min="1"
+max="24"
+value="10">
+
+<button id="saveGoal">
+
+Save Goal
+
+</button>
+
+<div class="progress-bar">
+
+<div id="progressFill">
+
+</div>
+
+</div>
+
+<p id="goalPercent">
+
+0%
+
+</p>
+
+</section>
+<!-- Subjects Section -->
+
+<section class="subject-card">
+
+<h2>📚 My Subjects</h2>
+
+<div class="subject-input">
+
+<input 
+type="text"
+id="newSubject"
+placeholder="Add new subject">
+
+<button id="addSubject">
+Add
+</button>
+
+</div>
+
+
+<div id="subjectList">
+
+<div class="subject-item">
+<span>⚛️ Physics</span>
+<span>0h</span>
+</div>
+
+<div class="subject-item">
+<span>🧪 Chemistry</span>
+<span>0h</span>
+</div>
+
+<div class="subject-item">
+<span>📐 Mathematics</span>
+<span>0h</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- Tasks -->
+
+<section class="task-card">
+
+<h2>✅ Daily Tasks</h2>
+
+<div class="task-input">
+
+<input
+type="text"
+id="taskInput"
+placeholder="Enter task">
+
+<button id="addTask">
++
+</button>
+
+</div>
+
+
+<div id="taskList">
+
+</div>
+
+</section>
+
+
+<!-- Group Preview -->
+
+<section class="group-card">
+
+<h2>👥 My Study Groups</h2>
+
+
+<div class="group-box">
+
+<h3>
+No Group Joined
+</h3>
+
+<p>
+Create or join a study group to compete with friends.
+</p>
+
+
+<button id="createGroup">
+
+Create Group
+
+</button>
+
+
+<button id="joinGroup">
+
+Join Group
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- Leaderboard Preview -->
+
+<section class="leaderboard-card">
+
+<h2>
+🏆 Daily Ranking
+</h2>
+
+
+<div class="leader-row top">
+
+<span>
+🥇 QuantumJEE
+</span>
+
+<span>
+15.2h
+</span>
+
+</div>
+
+
+<div class="leader-row">
+
+<span>
+🥈 PhysicsMaster
+</span>
+
+<span>
+12.8h
+</span>
+
+</div>
+
+
+<div class="leader-row">
+
+<span>
+🥉 MathWizard
+</span>
+
+<span>
+10.5h
+</span>
+
+</div>
+
+
+<button id="openLeaderboard">
+
+View Full Leaderboard
+
+</button>
+
+
+</section>
+
+
+
+<!-- Analytics Preview -->
+
+
+<section class="analytics-card">
+
+
+<h2>
+📊 Analytics
+</h2>
+
+
+<div class="analytics-grid">
+
+
+<div>
+<!-- Challenges -->
+
+<section class="challenge-card">
+
+<h2>🔥 Active Challenges</h2>
+
+<div class="challenge-box">
+
+<h3>
+10 Days Focus Challenge
+</h3>
+
+<p>
+Complete daily targets and climb the leaderboard.
+</p>
+
+<div class="challenge-progress">
+
+<div id="challengeFill"></div>
+
+</div>
+
+<p>
+Day 3 / 10
+</p>
+
+<button id="joinChallenge">
+Join Challenge
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- Notifications -->
+
+<section class="notification-card">
+
+<h2>
+🔔 Notifications
+</h2>
+
+
+<div id="notificationList">
+
+<div class="notification">
+
+🎯 Daily goal reminder:
+Complete your target today.
+
+</div>
+
+
+<div class="notification">
+
+🏆 New ranking update available.
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- Settings -->
+
+<section class="settings-card">
+
+<h2>
+⚙ Settings
+</h2>
+
+
+<div class="setting-item">
+
+<span>
+🌙 Dark Mode
+</span>
+
+<input type="checkbox" id="darkMode">
+
+</div>
+
+
+<div class="setting-item">
+
+<span>
+🔔 Notifications
+</span>
+
+<input type="checkbox" checked>
+
+</div>
+
+
+<div class="setting-item">
+
+<span>
+🔒 Private Profile
+</span>
+
+<input type="checkbox" checked>
+
+</div>
+
+
+</section>
+
+
+
+<!-- Mobile Navigation -->
+
+<nav class="mobile-nav">
+
+
+<button>
+🏠
+<br>
+Home
+</button>
+
+
+<button>
+⏱
+<br>
+Timer
+</button>
+
+
+<button>
+👥
+<br>
+Groups
+</button>
+
+
+<button>
+🏆
+<br>
+Rank
+</button>
+
+
+<button>
+👤
+<br>
+Profile
+</button>
+
+
+</nav>
+
+
+
+</main>
+
+
+<!-- Scripts -->
+
+<script src="dashboard.js"></script>
+<script src="timer.js"></script>
+<script src="subjects.js"></script>
+<script src="goals.js"></script>
+
+
+</body>
+
+</html>
+/* ==================================
+   BABY STUDY PROJECT
+   dashboard.css
+   Module 2B-1
+================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --primary:#38bdf8;
+    --secondary:#8b5cf6;
+    --bg:#020617;
+    --card:rgba(15,23,42,.75);
+    --text:#ffffff;
+    --muted:#94a3b8;
+
+}
+
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#2563eb,transparent 35%),
+    radial-gradient(circle at bottom right,#7c3aed,transparent 35%),
+    var(--bg);
+
+    color:white;
+
+    min-height:100vh;
+
+}
+
+
+
+/* Loader */
+
+#loader{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#020617;
+
+    z-index:9999;
+
+}
+
+
+
+/* Sidebar */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:260px;
+
+    height:100vh;
+
+    padding:30px 20px;
+
+    background:rgba(15,23,42,.75);
+
+    backdrop-filter:blur(20px);
+
+    border-right:1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+.logo{
+
+    font-size:25px;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    color:var(--primary);
+
+}
+
+
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+
+
+.sidebar li{
+
+    padding:16px;
+
+    margin:10px 0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    color:#cbd5e1;
+
+}
+
+
+
+.sidebar li:hover,
+.sidebar li.active{
+
+    background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+    );
+
+    color:white;
+
+}
+
+
+
+/* Main Area */
+
+.main{
+
+    margin-left:260px;
+
+    padding:30px;
+
+}
+
+
+
+/* Topbar */
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.topbar h2{
+
+    font-size:30px;
+
+}
+
+
+
+#babyID{
+
+    color:var(--muted);
+
+}
+
+
+
+.profile{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+}
+
+
+
+#logoutBtn{
+
+    padding:12px 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+/* Stats */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.card{
+
+    background:var(--card);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:22px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.card h3{
+
+    color:var(--muted);
+
+    margin-bottom:15px;
+
+}
+
+
+
+.card h1{
+
+    font-size:35px;
+
+}
